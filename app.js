@@ -17,6 +17,7 @@ const PersonModel = Mongoose.model('person', {
 
 app.post('/person', async (request, response) => {
   const result = await new PersonModel(request.body).save();
+  response.send('save complete!');
   response.send(result);
 });
 
@@ -26,9 +27,14 @@ app.get('/person', async (request, response) => {
 });
 
 app.get('/person/:id', async (request, response) => {
-  const person = await PersonModel.findById(request.params.id).exec();
+  console.log(request);
+  let person;
+  try {
+    person = await PersonModel.find(request.params);
+  } catch (error) {
+    console.log(error);
+  }
   response.send(person);
-  console.log(person);
 });
 
 app.put('/person/:id', async (request, response) => {
