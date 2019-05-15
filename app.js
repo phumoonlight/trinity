@@ -35,14 +35,9 @@ app.get('/person', async (request, response) => {
 });
 
 app.get('/person/:id', async (request, response) => {
-  console.log(request);
-  const obj = {
-    firstname: request.params.id,
-  };
-  let person;
   try {
-    person = await PersonModel.find(obj);
-    response.send(person);
+    const result = await PersonModel.findOne({ firstname: request.params.id });
+    response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
