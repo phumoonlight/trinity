@@ -45,7 +45,7 @@ app.get('/person/:id', async (request, response) => {
 
 app.put('/person/:id', async (request, response) => {
   try {
-    const person = await PersonModel.findById(request.params.id).exec();
+    const person = await PersonModel.findOne({ firstname: request.params.id }).exec();
     person.set(request.body);
     const result = await person.save();
     response.send(result);
@@ -56,7 +56,7 @@ app.put('/person/:id', async (request, response) => {
 
 app.delete('/person/:id', async (request, response) => {
   try {
-    const result = await PersonModel.deleteOne({ _id: request.params.id }).exec();
+    const result = await PersonModel.deleteOne({ firstname: request.params.id }).exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
@@ -65,7 +65,7 @@ app.delete('/person/:id', async (request, response) => {
 
 app.delete('/personall', async (request, response) => {
   try {
-    const result = await PersonModel.deleteOne().exec();
+    const result = await PersonModel.deleteMany().exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
