@@ -18,22 +18,17 @@ app.post('/person', async (request, response) => {
   const result = await new PersonModel(request.body).save();
   response.send(result);
 });
-app.post('/person', async (request, response) => {
-  const result = await new PersonModel(request.body).save();
+
+app.get('/person', async (request, response) => {
+  const result = await PersonModel.find().exec();
   response.send(result);
 });
-//
 
-// app.get('/person', async (request, response) => {
-//   const result = await PersonModel.find().exec();
-//   response.send(result);
-// }); AOF
-
-// app.get('/person/:id', async (request, response) => {
-//   const person = await PersonModel.findById(request.params.id).exec();
-//   response.send(person);
-//   console.log(person);
-// });
+app.get('/person/:id', async (request, response) => {
+  const person = await PersonModel.findById(request.params.id).exec();
+  response.send(person);
+  console.log(person);
+});
 
 app.put('/person/:id', async (request, response) => {
   const person = await PersonModel.findById(request.params.id).exec();
