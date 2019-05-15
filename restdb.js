@@ -14,10 +14,10 @@ const PersonModel = Mongoose.model('person', {
   lastname: String,
 });
 
-app.post('/person', async (request, response) => {
-  const result = await new PersonModel(request.body).save();
-  response.send(result);
-});
+// app.post('/person', async (request, response) => {
+//   const result = await new PersonModel(request.body).save();
+//   response.send(result);
+// });
 
 app.get('/person', async (request, response) => {
   const result = await PersonModel.find().exec();
