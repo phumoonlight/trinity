@@ -1,23 +1,23 @@
 /* eslint-disable no-console */
-import mongoClient from 'mongodb';
+import mongoDB from 'mongodb';
 
 const url = 'mongodb://localhost:27017';
 
-const testObj = {
+const testPerson = {
   name: 'noobmaster69',
-  age: 1500,
+  age: 10,
   isAlive: true,
 };
 
-const connectDB = async () => {
+const testConnectDB = async () => {
   try {
-    const mongo = await mongoClient.connect(url, { useNewUrlParser: true });
-    const database = mongo.db('mydb');
-    database.collection('users').insertOne(testObj);
-    mongo.close();
+    const connectDB = await mongoDB.connect(url, { useNewUrlParser: true });
+    const database = connectDB.db('mydb');
+    database.collection('testpeople').insertOne(testPerson);
+    connectDB.close();
   } catch (error) {
     console.log(error);
   }
 };
 
-connectDB();
+testConnectDB();
