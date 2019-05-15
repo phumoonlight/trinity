@@ -4,19 +4,16 @@ import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true });
 
-const testSchema = mongoose.Schema({
+const Person = mongoose.model('testperson', mongoose.Schema({
   name: String,
   age: Number,
   isAlive: Boolean,
-}, { collection: 'users' });
+}));
 
-const User = mongoose.model('', testSchema);
-
-const testUser = new User({
+const testPerson = new Person({
   name: 'noobmaster69',
-  age: 1500,
+  age: 10,
   isAlive: true,
-  hobby: 'drink',
 });
 
-testUser.save((err) => { if (err) throw err; });
+testPerson.save((err) => { if (err) throw err; });
