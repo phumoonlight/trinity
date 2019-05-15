@@ -1,7 +1,10 @@
-{
-    "name": "example",
-    "version": "0.1.0",
-    "description": "apiDoc basic example",
-    "title": "Custom apiDoc browser title",
-    "url" : "https://api.github.com/v1"
+
+
+  {
+    "name": "ApiDoc",
+    "version": "1.0.0",
+    "description": "apiDoc basic ",
+    "title": "Custom apiDoc",
+    "url" : "localhost:3000"
   }
+
