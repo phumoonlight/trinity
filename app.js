@@ -5,11 +5,10 @@ import Mongoose from 'mongoose';
 import BodyParser from 'body-parser';
 
 const app = Express();
-
-Mongoose.connect('mongodb://localhost/mydb');
-
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
+
+Mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true });
 
 const PersonModel = Mongoose.model('person', {
   firstname: String,
