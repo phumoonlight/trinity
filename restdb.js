@@ -24,11 +24,11 @@ app.get('/person', async (request, response) => {
   response.send(result);
 });
 
-app.get('/person/:id', async (request, response) => {
-  const person = await PersonModel.findById(request.params.id).exec();
-  response.send(person);
-  console.log(person);
-});
+// app.get('/person/:id', async (request, response) => {
+//   const person = await PersonModel.findById(request.params.id).exec();
+//   response.send(person);
+//   console.log(person);
+// });
 
 app.put('/person/:id', async (request, response) => {
   const person = await PersonModel.findById(request.params.id).exec();
