@@ -1,19 +1,19 @@
 /* eslint-disable no-console */
 
-import Express from 'express';
-import Mongoose from 'mongoose';
-import BodyParser from 'body-parser';
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
-const app = Express();
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-Mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true });
 
-const PersonModel = Mongoose.model('person', {
+const PersonModel = mongoose.model('person', mongoose.Schema({
   firstname: String,
   lastname: String,
-});
+}, { versionKey: false }));
 
 app.post('/person', async (request, response) => {
   try {
