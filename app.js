@@ -1,76 +1,24 @@
 /* eslint-disable no-console */
-
 import express from 'express';
-import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import User from './controllers/express';
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true });
+app.get('/people', User.get);
 
-const PersonModel = mongoose.model('person', mongoose.Schema({
-  firstname: String,
-  lastname: String,
-}, { versionKey: false }));
+app.get('/people/:name', User.getid);
 
-app.post('/people', async (request, response) => {
-  try {
-    const person = new PersonModel(request.body);
-    const result = await person.save();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+app.post('/people', User.post);
 
-app.get('/people', async (request, response) => {
-  try {
-    const result = await PersonModel.find().exec();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+app.put('/people/:name', User.put);
 
-app.get('/people/:name', async (request, response) => {
-  try {
-    const result = await PersonModel.findOne({ firstname: request.params.name });
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+app.delete('/people/:id', User.deleteid);
 
-app.put('/people/:name', async (request, response) => {
-  try {
-    const person = await PersonModel.findOne({ firstname: request.params.name }).exec();
-    person.set(request.body);
-    const result = await person.save();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
-
-app.delete('/people/:id', async (request, response) => {
-  try {
-    const result = await PersonModel.deleteOne({ firstname: request.params.id }).exec();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
-
-app.delete('/people', async (request, response) => {
-  try {
-    const result = await PersonModel.deleteMany().exec();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+app.delete('/people', User.deleteall);
 
 app.listen(3000, () => {
   console.log('Listening at :3000');
