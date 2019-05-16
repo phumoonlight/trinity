@@ -8,7 +8,7 @@ const Person = mongoose.model('testperson', mongoose.Schema({
   name: String,
   age: Number,
   isAlive: Boolean,
-}));
+}, { versionKey: false }));
 
 const testPerson = new Person({
   name: 'noobmaster69',

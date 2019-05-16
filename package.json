@@ -6,8 +6,8 @@
   "scripts": {
     "app": "nodemon --exec babel-node app.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-mongodb": "babel-node testMongodb.js",
-    "test-mongoose": "babel-node testMongoose.js"
+    "test-mongodb": "babel-node ./test/testMongodb.js",
+    "test-mongoose": "babel-node ./test/testMongoose.js"
   },
   "repository": {
     "type": "git",
