@@ -43,9 +43,9 @@ app.get('/person/:name', async (request, response) => {
   }
 });
 
-app.put('/person/:id', async (request, response) => {
+app.put('/person/:name', async (request, response) => {
   try {
-    const person = await PersonModel.findOne({ firstname: request.params.id }).exec();
+    const person = await PersonModel.findOne({ firstname: request.params.name }).exec();
     person.set(request.body);
     const result = await person.save();
     response.send(result);
