@@ -15,7 +15,7 @@ const PersonModel = mongoose.model('person', mongoose.Schema({
   lastname: String,
 }, { versionKey: false }));
 
-app.post('/person', async (request, response) => {
+app.post('/people', async (request, response) => {
   try {
     const person = new PersonModel(request.body);
     const result = await person.save();
@@ -25,7 +25,7 @@ app.post('/person', async (request, response) => {
   }
 });
 
-app.get('/person', async (request, response) => {
+app.get('/people', async (request, response) => {
   try {
     const result = await PersonModel.find().exec();
     response.send(result);
@@ -34,7 +34,7 @@ app.get('/person', async (request, response) => {
   }
 });
 
-app.get('/person/:name', async (request, response) => {
+app.get('/people/:name', async (request, response) => {
   try {
     const result = await PersonModel.findOne({ firstname: request.params.name });
     response.send(result);
@@ -43,7 +43,7 @@ app.get('/person/:name', async (request, response) => {
   }
 });
 
-app.put('/person/:name', async (request, response) => {
+app.put('/people/:name', async (request, response) => {
   try {
     const person = await PersonModel.findOne({ firstname: request.params.name }).exec();
     person.set(request.body);
@@ -54,7 +54,7 @@ app.put('/person/:name', async (request, response) => {
   }
 });
 
-app.delete('/person/:id', async (request, response) => {
+app.delete('/people/:id', async (request, response) => {
   try {
     const result = await PersonModel.deleteOne({ firstname: request.params.id }).exec();
     response.send(result);
@@ -63,7 +63,7 @@ app.delete('/person/:id', async (request, response) => {
   }
 });
 
-app.delete('/personall', async (request, response) => {
+app.delete('/people', async (request, response) => {
   try {
     const result = await PersonModel.deleteMany().exec();
     response.send(result);
