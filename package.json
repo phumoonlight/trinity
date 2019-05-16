@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "app": "nodemon --exec babel-node app.js ",
+    "apidoc": "node_env=test apidoc -c apidoc/ -i apidoc -o apidoc/des",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-mongodb": "babel-node ./test/testMongodb.js",
     "test-mongoose": "babel-node ./test/testMongoose.js"
