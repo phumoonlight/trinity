@@ -1,33 +1,36 @@
-import PersonModel from './mongoose';
+import Person from '../models/person';
 
-const get = async (request, response) => {
+const getAll = async (_request, response) => {
   try {
-    const result = await PersonModel.find().exec();
+    const result = await Person.find().exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 };
-const getid = async (request, response) => {
+
+const getByName = async (request, response) => {
   try {
-    const result = await PersonModel.findOne({ firstname: request.params.name });
+    const result = await Person.findOne({ firstname: request.params.name });
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 };
+
 const post = async (request, response) => {
   try {
-    const person = new PersonModel(request.body);
+    const person = new Person(request.body);
     const result = await person.save();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 };
+
 const put = async (request, response) => {
   try {
-    const person = await PersonModel.findOne({ firstname: request.params.name }).exec();
+    const person = await Person.findOne({ firstname: request.params.name }).exec();
     person.set(request.body);
     const result = await person.save();
     response.send(result);
@@ -35,27 +38,30 @@ const put = async (request, response) => {
     response.status(500).send(error);
   }
 };
-const deleteid = async (request, response) => {
+
+const deleteByName = async (request, response) => {
   try {
-    const result = await PersonModel.deleteOne({ firstname: request.params.id }).exec();
+    const result = await Person.deleteOne({ firstname: request.params.name }).exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 };
-const deleteall = async (request, response) => {
+
+const deleteAll = async (_request, response) => {
   try {
-    const result = await PersonModel.deleteMany().exec();
+    const result = await Person.deleteMany().exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 };
+
 export default {
-  get,
-  getid,
+  getAll,
+  getByName,
   post,
   put,
-  deleteid,
-  deleteall,
+  deleteByName,
+  deleteAll,
 };
