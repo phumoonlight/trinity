@@ -5,6 +5,6 @@ const personSchema = mongoose.Schema({
   lastname: String,
 });
 
-const Person = mongoose.model('people', personSchema, { versionKey: false });
+const Person = mongoose.model('person', personSchema);
 
 export default Person;

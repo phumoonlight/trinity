@@ -39,9 +39,9 @@ const put = async (request, response) => {
   }
 };
 
-const deleteById = async (request, response) => {
+const deleteByName = async (request, response) => {
   try {
-    const result = await Person.deleteOne({ firstname: request.params.id }).exec();
+    const result = await Person.deleteOne({ firstname: request.params.name }).exec();
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
@@ -62,6 +62,6 @@ export default {
   getByName,
   post,
   put,
-  deleteById,
+  deleteByName,
   deleteAll,
 };
