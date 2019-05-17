@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 let random = 0;
 const personSchema = mongoose.Schema({
-  ID: {
+  userid: {
     type: String,
     default() {
       random += Math.floor((Math.random() * 1) + 1);
