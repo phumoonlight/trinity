@@ -1,8 +1,14 @@
 import Person from '../models/person';
 
-const getAll = async (_request, response) => {
+const getAll = async (request, response) => {
+  let result;
   try {
-    const result = await Person.find().exec();
+    if ('q' in request.query) {
+      const query = request.query.q;
+      result = await Person.find({ firstname: { $regex: query, $options: 'i' } }).exec();
+    } else {
+      result = await Person.find().exec();
+    }
     response.send(result);
   } catch (error) {
     response.status(404).send(error);
