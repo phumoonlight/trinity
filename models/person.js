@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 let random = 0;
-// const lastrandom = random;
+const lastrandom = random;
 const personSchema = mongoose.Schema({
   ID: {
     type: String,
