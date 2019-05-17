@@ -6,7 +6,7 @@ const get = async (request, response) => {
     if ('search' in request.query) {
       const query = request.query.search;
       result = await Person.find({ firstname: { $regex: query, $options: 'i' } }).exec();
-      result = result.concat(await Person.find({ lastname: { $regex: query, $options: '' } }).exec());
+      result = result(await Person.find({ lastname: { $regex: query, $options: '' } }).exec());
     } else {
       result = await Person.find().exec();
     }
