@@ -3,8 +3,8 @@ import Person from '../models/person';
 const get = async (request, response) => {
   let result;
   try {
-    if ('q' in request.query) {
-      const query = request.query.q;
+    if ('search' in request.query) {
+      const query = request.query.search;
       result = await Person.find({ firstname: { $regex: query, $options: 'i' } }).exec();
       result = result.concat(await Person.find({ lastname: { $regex: query, $options: '' } }).exec());
     } else {

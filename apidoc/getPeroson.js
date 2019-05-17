@@ -4,6 +4,8 @@
  * @apiGroup Person
  * @apiVersion 0.1.0
  *
+ * @apiParam (Query) {String} search search for name
+ *
  * @apiSuccess (Success 200) {String} _id id of person / mongodb auto generate
  * @apiSuccess (Success 200) {String} firstname firstname of person
  * @apiSuccess (Success 200) {String} lastname lastname of person

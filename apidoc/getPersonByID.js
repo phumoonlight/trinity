@@ -1,10 +1,10 @@
 /**
- * @api {get} /people?q=[value] Find a person by name
+ * @api {get} /people/:id Find a person by id
  * @apiName GetPersonByID
  * @apiGroup Person
  * @apiVersion 0.1.0
  *
- * @apiParam (param) {String} value to search for firstname
+ * @apiParam (param) {String} id to search for userid
  *
  * @apiSuccess (Success 200) {String} _id id of person / mongodb auto generate
  * @apiSuccess (Success 200) {String} firstname firstname of person
