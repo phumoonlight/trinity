@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/people', person.getAll);
 app.get('/people/:name', person.getByName);
 app.post('/people', person.post);
-app.put('/people/:name', person.put);
+app.put('/people/:id', person.put);
 app.delete('/people/:name', person.deleteByName);
 app.delete('/people', person.deleteAll);
 

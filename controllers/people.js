@@ -11,7 +11,7 @@ const getAll = async (_request, response) => {
 
 const getByName = async (request, response) => {
   try {
-    const result = await Person.findOne({ firstname: request.params.name });
+    const result = await Person.find({ firstname: request.params.name });
     response.send(result);
   } catch (error) {
     response.status(404).send(error);
@@ -30,7 +30,7 @@ const post = async (request, response) => {
 
 const put = async (request, response) => {
   try {
-    const person = await Person.findOne({ firstname: request.params.name }).exec();
+    const person = await Person.findById({ _id: request.params.id }).exec();
     person.set(request.body);
     const result = await person.save();
     response.send(result);
