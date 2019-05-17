@@ -1,19 +1,10 @@
 import mongoose from 'mongoose';
 
 const personSchema = mongoose.Schema({
+  userid: String,
   firstname: String,
   lastname: String,
-  password: {
-    type: String,
-    validate: [
-      function (password) {
-        return password && password.length >= 6;
-      },
-      'Password 6 characters',
-    ],
-  },
-
-});
+}, { versionKey: false });
 
 const Person = mongoose.model('person', personSchema);
 
