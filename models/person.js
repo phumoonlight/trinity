@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 
+let random = 0;
+// const lastrandom = random;
 const personSchema = mongoose.Schema({
+  ID: {
+    type: String,
+    default() {
+      random += Math.floor((Math.random() * 1) + 1);
+      return random;
+    },
+  },
   firstname: String,
   lastname: String,
-  password: {
-    type: String,
-    validate: [
-      function (password) {
-        return password && password.length >= 6;
-      },
-      'Password 6 characters',
-    ],
-  },
 
 });
 
