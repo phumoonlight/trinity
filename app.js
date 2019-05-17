@@ -10,12 +10,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/people', person.getAll);
-app.get('/people/:name', person.getByName);
+app.get('/people', person.get);
+app.get('/people/:id', person.getByUserID);
 app.post('/people', person.post);
 app.put('/people/:id', person.put);
-app.delete('/people/:name', person.deleteByName);
-app.delete('/people', person.deleteAll);
+app.delete('/people/:id', person.deleteByID);
 
 app.listen(3000, () => {
   console.log('Listening at :3000');

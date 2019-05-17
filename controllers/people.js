@@ -1,6 +1,6 @@
 import Person from '../models/person';
 
-const getAll = async (request, response) => {
+const get = async (request, response) => {
   let result;
   try {
     if ('q' in request.query) {
@@ -16,9 +16,9 @@ const getAll = async (request, response) => {
   }
 };
 
-const getByName = async (request, response) => {
+const getByUserID = async (request, response) => {
   try {
-    const result = await Person.find({ firstname: request.params.name });
+    const result = await Person.findById(request.params.id);
     response.send(result);
   } catch (error) {
     response.status(404).send(error);
@@ -37,7 +37,7 @@ const post = async (request, response) => {
 
 const put = async (request, response) => {
   try {
-    const person = await Person.findById({ _id: request.params.id }).exec();
+    const person = await Person.findById(request.params.id).exec();
     person.set(request.body);
     const result = await person.save();
     response.send(result);
@@ -46,18 +46,9 @@ const put = async (request, response) => {
   }
 };
 
-const deleteByName = async (request, response) => {
+const deleteByID = async (request, response) => {
   try {
-    const result = await Person.deleteOne({ firstname: request.params.name }).exec();
-    response.send(result);
-  } catch (error) {
-    response.status(400).send(error);
-  }
-};
-
-const deleteAll = async (_request, response) => {
-  try {
-    const result = await Person.deleteMany().exec();
+    const result = await Person.deleteOne({ _id: request.params.id }).exec();
     response.send(result);
   } catch (error) {
     response.status(400).send(error);
@@ -65,10 +56,9 @@ const deleteAll = async (_request, response) => {
 };
 
 export default {
-  getAll,
-  getByName,
+  get,
+  getByUserID,
   post,
   put,
-  deleteByName,
-  deleteAll,
+  deleteByID,
 };
