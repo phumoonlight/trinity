@@ -5,7 +5,7 @@ const personSchema = mongoose.Schema({
   userid: {
     type: String,
     default() {
-      random += Math.floor((Math.random() * 1) + 1);
+      random += 1;
       return random;
     },
   },

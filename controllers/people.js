@@ -4,9 +4,8 @@ const get = async (request, response) => {
   let result;
   try {
     if ('search' in request.query) {
-      const query = request.query.search;
-      result = await Person.find({ firstname: { $regex: query, $options: 'i' } }).exec();
-      result = result(await Person.find({ lastname: { $regex: query, $options: '' } }).exec());
+      const { search } = request.query;
+      result = await Person.find({ firstname: { $regex: search, $options: 'i' } }).exec();
     } else {
       result = await Person.find().exec();
     }
